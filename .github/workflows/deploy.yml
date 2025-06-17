@@ -35,5 +35,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.SSHKEY }}
-        script: "cd /home/u9-7tfzpstrxnlx/www/sfcrm.pythonsrl.com/public_html && ./server_deploy.sh"
+        script: "cd /home/u20-pzrfly7zmftw/www/gestionale.growplan.it/public_html && ./server_deploy.sh"
 
