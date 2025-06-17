@@ -28,7 +28,7 @@ class CreateCustomer extends CreateRecord
         return $data;
     }
 
-    protected function afterCreate() : void {
+    /*protected function afterCreate() : void {
         $customer = $this->record;
         Mail::to(env('MAIL_AD_DEF','mp.ponti84@gmail.com'))->send(new NewCustomer($customer));
     }

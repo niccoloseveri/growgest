@@ -18,7 +18,7 @@ class Dashboard extends \Filament\Pages\Dashboard
     protected function getHeaderActions(): array
     {
        return [
-            Action::make('newfieracontact')->color('primary')->label('Fiera – Nuovo Cliente')->size(ActionSize::Large)->icon('heroicon-s-user-plus')->url(fn():string => route('filament.admin.resources.fiera-customers.create')),
+            //Action::make('newfieracontact')->color('primary')->label('Fiera – Nuovo Cliente')->size(ActionSize::Large)->icon('heroicon-s-user-plus')->url(fn():string => route('filament.admin.resources.fiera-customers.create')),
             Action::make('newcontact')->label('Nuovo Cliente')->color('success')->size(ActionSize::Large)->icon('heroicon-s-user-plus')->url(fn():string => route('filament.admin.resources.customers.create')),
             Action::make('newtask')->label('Nuovo Task')->color('info')->size(ActionSize::Large)->icon('heroicon-o-rectangle-stack')->url(fn():string => route('filament.admin.resources.tasks.create')),
             Action::make('newappointment')->color('warning')->label('Nuovo Appuntamento')->size(ActionSize::Large)->icon('heroicon-o-calendar-days')->url(fn():string => route('filament.admin.resources.appointments.create')),

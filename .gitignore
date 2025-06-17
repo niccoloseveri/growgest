@@ -20,3 +20,4 @@ yarn-error.log
 .DS_Store
 storage/.DS_Store
 storage/framework/.DS_Store
+app/.DS_Store

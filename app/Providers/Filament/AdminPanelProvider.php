@@ -30,8 +30,8 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->brandLogo(asset('vendor/logosf.png'))
-            ->darkModeBrandLogo(asset('vendor/logosfdarkmode.png'))
+            ->brandLogo(asset('vendor/logogp.png'))
+            ->darkModeBrandLogo(asset('vendor/logogpdarkmode.png'))
             ->brandLogoHeight('3.5rem')
             ->id('admin')
             ->path('admin')
@@ -40,7 +40,8 @@ class AdminPanelProvider extends PanelProvider
             ->emailVerification()
             ->profile()
             ->colors([
-                'primary' => '#454745',
+                //'primary' => '#454745',
+                'primary' => '#61d5ed',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

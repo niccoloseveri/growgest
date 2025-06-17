@@ -61,7 +61,7 @@ class CustomerResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make()->schema([
-                    Forms\Components\Toggle::make('is_azienda')->label('Azienda?')->live()->onColor('success')
+                    Forms\Components\Toggle::make('is_azienda')->label('Azienda?')->live()->onColor('success')->default(true)
                     ,
                     Forms\Components\Toggle::make('gia_cliente')->label('Già cliente?')->live()->onColor('success')
                     ,
@@ -95,22 +95,35 @@ class CustomerResource extends Resource
                     Forms\Components\TextInput::make('tel_az')->label('Telefono'),
                     Forms\Components\TextInput::make('website')->label('Sito Web'),
                     Forms\Components\TextInput::make('cod_univoco')->label('Codice Univoco'),
-
-
+                    Forms\Components\TextInput::make('mat_inps')->label('Matricola INPS'),
+                    Forms\Components\TextInput::make('n_dipendenti')->label('Numero Dipendenti')
+                        ->numeric()
+                        ->minValue(0)
+                        ->maxValue(2000)
+                        ->default(0),
+                    //select stato (aderente o non aderente)
+                    Forms\Components\Select::make('aderente')->label('Stato')
+                        ->options([
+                            true => 'Aderente',
+                            false => 'Non Aderente',
+                        ])
+                        ->default(true),
+                    Forms\Components\TextInput::make('fondo')->label('Fondo'),
                     Forms\Components\Fieldset::make('Indirizzo Azienda')->schema([
-                        Forms\Components\TextInput::make('stato_az')->label('Nazione'),
+                        Forms\Components\TextInput::make('regione_az')->label('Regione'),
                         Forms\Components\TextInput::make('prov_az')->label('Provincia'),
                         Forms\Components\TextInput::make('citta_az')->label('Città'),
                         Forms\Components\TextInput::make('cap_az')->label('CAP'),
                         Forms\Components\TextInput::make('via_az')->label('Via')->columnSpanFull(),
                     ])->columns(),
 
+
                 ])
                 ->columns()
                 ->hidden(fn (Get $get): bool => !$get('is_azienda')),
 
 
-                Forms\Components\Section::make('Dettagli Contatto')->label('Dettagli Contatto')
+                Forms\Components\Section::make('Dettagli Referente')->label('Dettagli Referente')
                     ->schema([
                         Forms\Components\TextInput::make('first_name')->label('Nome')
                             ->maxLength(255),

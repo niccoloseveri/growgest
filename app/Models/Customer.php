@@ -61,6 +61,10 @@ class Customer extends Model
         'same_as_fatt',
         'note_spedizione',
         'settore_id',
+        'mat_inps',
+        'n_dipendenti',
+        'aderente',
+        'fondo',
     ];
 
     protected $casts = [
