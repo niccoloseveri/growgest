@@ -36,5 +36,6 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.SSHKEY }}
+        passphrase: ${{ secrets.PASSWORD }}
         script: "cd /home/u20-pzrfly7zmftw/www/gestionale.growplan.it/public_html && ./server_deploy.sh"
 
