@@ -110,6 +110,9 @@ class CustomerResource extends Resource
                         ])
                         ->default(true),
                     Forms\Components\TextInput::make('fondo')->label('Fondo'),
+                    Forms\Components\RichEditor::make('az_note')->label('Note')
+                            ->maxLength(65535)
+                            ->columnSpanFull(),
                     Forms\Components\Fieldset::make('Indirizzo Azienda')->schema([
                         Forms\Components\TextInput::make('regione_az')->label('Regione'),
                         Forms\Components\TextInput::make('prov_az')->label('Provincia'),
