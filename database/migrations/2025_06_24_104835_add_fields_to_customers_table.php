@@ -13,10 +13,7 @@ return new class extends Migration
     {
         Schema::table('customers', function (Blueprint $table) {
             //
-            $table->string('mat_inps')->nullable()->after('cod_univoco');
-            $table->integer('n_dipendenti')->nullable()->after('mat_inps');
-            $table->boolean('aderente')->default(true)->after('n_dipendenti');
-            $table->string('fondo')->nullable()->after('aderente');
+            $table->longText('az_note')->nullable()->after('fondo');
         });
     }
 
@@ -27,10 +24,7 @@ return new class extends Migration
     {
         Schema::table('customers', function (Blueprint $table) {
             //
-            $table->dropIfExists('mat_inps');
-            $table->dropIfExists('n_dipendenti');
-            $table->dropIfExists('aderente');
-            $table->dropIfExists('fondo');
+            $table->dropIfExists('az_note');
         });
     }
 };

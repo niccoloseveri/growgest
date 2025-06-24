@@ -21,7 +21,7 @@
             <div class="relative bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
             <div class="max-w-md w-full p-6 shadow-md rounded-lg">
     <div class="flex items-center justify-center">
-      <img src="{{asset('vendor/logosf.png')}}" alt="Logo" class="h-8 w-auto">
+      <img src="{{asset('vendor/logogp.png')}}" alt="Logo" class="h-8 w-auto">
     </div>
     <h1 class="text-center text-3xl font-bold text-gray-800 mt-4">Sito in manutenzione</h1>
     <h2 class="text-center text-2xl text-gray-800 mt-4">Aggiornamento in corso</h2>

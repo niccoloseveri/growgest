@@ -104,8 +104,9 @@ class CustomerResource extends Resource
                     //select stato (aderente o non aderente)
                     Forms\Components\Select::make('aderente')->label('Stato')
                         ->options([
-                            true => 'Aderente',
-                            false => 'Non Aderente',
+                            1 => 'Aderente',
+                            0 => 'Non Aderente',
+                            2 => 'Standby',
                         ])
                         ->default(true),
                     Forms\Components\TextInput::make('fondo')->label('Fondo'),

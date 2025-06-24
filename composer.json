@@ -21,6 +21,7 @@
         "laraveldaily/laravel-invoices": "^3.1",
         "league/flysystem-aws-s3-v3": "^3.0",
         "malzariey/filament-daterangepicker-filter": "^2.8",
+        "mokhosh/filament-kanban": "^2.10",
         "saade/filament-fullcalendar": "^3.0",
         "stechstudio/filament-impersonate": "^3.16",
         "tomatophp/filament-notes": "^1.0"
