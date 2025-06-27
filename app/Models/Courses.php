@@ -46,4 +46,15 @@ class Courses extends Model
     {
         return $this->belongsTo(Strumentos::class, 'strumentos_id');
     }
+
+    /**
+     * The customers that belong to the course.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function customers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Customer::class, 'courses_customers')
+            ->withPivot('attivato');
+    }
 }

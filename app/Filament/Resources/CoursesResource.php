@@ -112,6 +112,10 @@ class CoursesResource extends Resource
                     ->label('Data Inizio Corso')
                     ->date()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('customers_count')
+                    ->label('Numero Partecipanti')
+                    ->counts('customers')
+                    ->sortable(),
             ])
             ->filters([
                 //

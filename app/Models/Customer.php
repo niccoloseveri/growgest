@@ -191,4 +191,15 @@ class Customer extends Model
         return $this->belongsTo(Settore::class);
     }
 
+    /**
+     * The courses that belong to the customer.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function courses(): BelongsToMany
+    {
+        return $this->belongsToMany(Courses::class, 'courses_customers')
+            ->withPivot('attivato');
+    }
+
 }

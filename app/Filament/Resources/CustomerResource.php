@@ -77,27 +77,20 @@ class CustomerResource extends Resource
                     /*->createOptionForm([
                         Forms\Components\TextInput::make('name')->label('Nome')->required(),
                         Forms\Components\Textarea::make('description')->label('Descrizione')->autosize(),
-                    ])*/
-                    ,
+                    ])*/,
                     Forms\Components\Select::make('fondo_id')->label('Fondo Interprofessionale')->relationship(name:'fondo',titleAttribute:'name')->searchable()->preload()->createOptionForm([
                         Forms\Components\TextInput::make('name')->label('Nome')->required(),
                         Forms\Components\Textarea::make('description')->label('Descrizione')->autosize(),
                     ]),
-
                     Forms\Components\DatePicker::make('prima_fattura')->label('Data prima fattura')
                     ->hidden(fn (Get $get): bool => !$get('gia_cliente')),
                 ])->columns(),
-
-
-
-
                 /*Forms\Components\Section::make('Informazioni Dipendente')
                     ->schema([
                         Forms\Components\Select::make('employee_id')->label('Nome')
                             ->options(User::where('role_id', Role::where('name', 'Employee')->first()->id)->orWhere('role_id',Role::where('name','Admin')->first()->id)->pluck('name', 'id'))
                     ])
-                    ->hidden(!auth()->user()->isAdmin()),
-*/
+                    ->hidden(!auth()->user()->isAdmin()),*/
 
                 Forms\Components\Section::make('Anagrafica')->label('Anagrafica')
                 ->schema([
@@ -285,6 +278,11 @@ class CustomerResource extends Resource
                     ->html()
                     ->searchable(['first_name', 'last_name','nome_az'])
                     ,
+                Tables\Columns\TextColumn::make('course_count')->label('Corsi')
+                    ->counts('courses')
+                    ->sortable()
+
+                ,
                 Tables\Columns\TextColumn::make('email')->toggleable(isToggledHiddenByDefault:true)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone_number')->toggleable(isToggledHiddenByDefault:true)
