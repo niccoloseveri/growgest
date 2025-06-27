@@ -131,6 +131,16 @@ class Customer extends Model
         return $this->belongsTo(User::class, 'employee_id');
     }
 
+    public function segnalatore(): BelongsTo
+    {
+        return $this->belongsTo(Personas::class);
+    }
+
+    public function fondo(): BelongsTo
+    {
+        return $this->belongsTo(Fondos::class);
+    }
+
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);

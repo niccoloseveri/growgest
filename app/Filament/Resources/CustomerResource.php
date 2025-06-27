@@ -43,6 +43,7 @@ use Filament\Forms\FormsComponent;
 use Filament\Infolists\Components\Fieldset;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Database\Eloquent\Model;
 
 class CustomerResource extends Resource
 {
@@ -60,13 +61,25 @@ class CustomerResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make()->schema([
-                    Forms\Components\Toggle::make('is_azienda')->label('Azienda?')->live()->onColor('success')->default(true)
+                Forms\Components\Section::make('Dati Generali')->schema([
+                    Forms\Components\Toggle::make('is_azienda')->label('Azienda?')->live()->onColor('success')->default(true)->columnSpanFull()
                     ,
-                    Forms\Components\Toggle::make('gia_cliente')->label('Già cliente?')->live()->onColor('success')
+                    /*Forms\Components\Toggle::make('gia_cliente')->label('Già cliente?')->live()->onColor('success')
                     ,
-
+                    */
                     Forms\Components\Select::make('settore_id')->label('Tipologia')->relationship(name:'settore',titleAttribute:'name')->searchable()->preload()->createOptionForm([
+                        Forms\Components\TextInput::make('name')->label('Nome')->required(),
+                        Forms\Components\Textarea::make('description')->label('Descrizione')->autosize(),
+                    ])->columnSpanFull(),
+                    Forms\Components\Select::make('employee_id')->label('Segnalatore')->relationship(name:'segnalatore',titleAttribute:'name')
+                        //nome e cognome del segnalatore
+                    ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->name} {$record->surname}")->searchable()->preload()
+                    /*->createOptionForm([
+                        Forms\Components\TextInput::make('name')->label('Nome')->required(),
+                        Forms\Components\Textarea::make('description')->label('Descrizione')->autosize(),
+                    ])*/
+                    ,
+                    Forms\Components\Select::make('fondo_id')->label('Fondo Interprofessionale')->relationship(name:'fondo',titleAttribute:'name')->searchable()->preload()->createOptionForm([
                         Forms\Components\TextInput::make('name')->label('Nome')->required(),
                         Forms\Components\Textarea::make('description')->label('Descrizione')->autosize(),
                     ]),
@@ -78,23 +91,37 @@ class CustomerResource extends Resource
 
 
 
-                Forms\Components\Section::make('Informazioni Dipendente')
+                /*Forms\Components\Section::make('Informazioni Dipendente')
                     ->schema([
                         Forms\Components\Select::make('employee_id')->label('Nome')
                             ->options(User::where('role_id', Role::where('name', 'Employee')->first()->id)->orWhere('role_id',Role::where('name','Admin')->first()->id)->pluck('name', 'id'))
                     ])
                     ->hidden(!auth()->user()->isAdmin()),
+*/
 
-
-                Forms\Components\Section::make('Dettagli Azienda')->label('Dettagli Azienda')
+                Forms\Components\Section::make('Anagrafica')->label('Anagrafica')
                 ->schema([
                     Forms\Components\TextInput::make('nome_az')->label('Nome Azienda - Ragione Sociale')->columnSpanFull(),
                     Forms\Components\TextInput::make('cf_azienda')->label('Codice Fiscale'),
                     Forms\Components\TextInput::make('piva')->label('Partita IVA'),
                     Forms\Components\TextInput::make('email_az')->label('Email'),
                     Forms\Components\TextInput::make('tel_az')->label('Telefono'),
-                    Forms\Components\TextInput::make('website')->label('Sito Web'),
-                    Forms\Components\TextInput::make('cod_univoco')->label('Codice Univoco'),
+                    //Forms\Components\TextInput::make('website')->label('Sito Web'),
+                    //Forms\Components\TextInput::make('cod_univoco')->label('Codice Univoco'),
+                    Forms\Components\Fieldset::make('Indirizzo Azienda')->schema([
+                        Forms\Components\TextInput::make('regione_az')->label('Regione'),
+                        Forms\Components\TextInput::make('prov_az')->label('Provincia'),
+                        Forms\Components\TextInput::make('citta_az')->label('Città'),
+                        Forms\Components\TextInput::make('cap_az')->label('CAP'),
+                        Forms\Components\TextInput::make('via_az')->label('Via')->columnSpanFull(),
+                    ])->columns(),
+                    Forms\Components\Fieldset::make('Rappresentante Legale')->schema([]),
+
+                ])
+                ->columns()
+                ->hidden(fn (Get $get): bool => !$get('is_azienda')),
+                Forms\Components\Section::make('Iscrizione al Fondo')->label('Iscrizione al Fondo')
+                ->schema([
                     Forms\Components\TextInput::make('mat_inps')->label('Matricola INPS'),
                     Forms\Components\TextInput::make('n_dipendenti')->label('Numero Dipendenti')
                         ->numeric()
@@ -113,15 +140,6 @@ class CustomerResource extends Resource
                     Forms\Components\RichEditor::make('az_note')->label('Note')
                             ->maxLength(65535)
                             ->columnSpanFull(),
-                    Forms\Components\Fieldset::make('Indirizzo Azienda')->schema([
-                        Forms\Components\TextInput::make('regione_az')->label('Regione'),
-                        Forms\Components\TextInput::make('prov_az')->label('Provincia'),
-                        Forms\Components\TextInput::make('citta_az')->label('Città'),
-                        Forms\Components\TextInput::make('cap_az')->label('CAP'),
-                        Forms\Components\TextInput::make('via_az')->label('Via')->columnSpanFull(),
-                    ])->columns(),
-
-
                 ])
                 ->columns()
                 ->hidden(fn (Get $get): bool => !$get('is_azienda')),
@@ -152,6 +170,7 @@ class CustomerResource extends Resource
                             ->columnSpanFull(),
                     ])
                     ->columns(),
+                /*
                 Forms\Components\Section::make('Fatturazione e Spedizione')->label('Fatturazione e Consegna')
                     ->schema([
                         Forms\Components\Fieldset::make('Indirizzo di Fatturazione')->schema([
@@ -177,6 +196,7 @@ class CustomerResource extends Resource
 
                         ])->columnSpan(1),
                         ])->columns(2),
+                        */
                 Forms\Components\Section::make('Dettagli Lead')->label('Dettagli Lead')
                     ->schema([
                         Forms\Components\Select::make('lead_source_id')->label('Fonte Lead')
