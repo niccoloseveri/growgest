@@ -90,12 +90,12 @@ class CoursesResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('pianos.name')
+                Tables\Columns\TextColumn::make('piano.name')
                     ->label('Piano Formativo')
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('strumentos.name')
+                Tables\Columns\TextColumn::make('strumento.name')
                     ->label('Strumento')
                     ->searchable()
                     ->sortable(),
