@@ -36,6 +36,7 @@ use Filament\Infolists\Components\RepeatableEntry;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\QuoteResource\Pages\CreateQuote;
 use App\Filament\Resources\CustomerResource\RelationManagers;
+use App\Filament\Resources\CustomerResource\RelationManagers\CoursesRelationManager;
 use App\Filament\Resources\CustomerResource\RelationManagers\QuotesRelationManager;
 use App\Models\Appointment;
 use App\Models\TaskCategory;
@@ -666,6 +667,7 @@ class CustomerResource extends Resource
     {
         return [
             //
+            CoursesRelationManager::class,
             QuotesRelationManager::class,
         ];
     }
