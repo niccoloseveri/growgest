@@ -26,6 +26,9 @@ php82 artisan optimize
 #Icon cache
 php82 artisan icons:cache
 
+#Filament cache
+php82 artisan filament:optimize
+
 # Exit maintenance mode
 php82 artisan up
 
