@@ -215,7 +215,7 @@ class CustomerResource extends Resource
                             ->reorderable(false)
                             ->addActionLabel('Aggiungi Documento')
                             ->schema([
-                                Forms\Components\FileUpload::make('file_path')->label('Percorso file')->disk('s3')->visibility('private')
+                                Forms\Components\FileUpload::make('file_path')->label('Percorso file')->disk('s3')->directory('Clienti')->visibility('private')
                                     ->required(),
                                 Forms\Components\Textarea::make('comments')->label('Commenti'),
                             ])
