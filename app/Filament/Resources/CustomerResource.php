@@ -164,7 +164,7 @@ class CustomerResource extends Resource
                             ->columnSpanFull(),
                     ])
                     ->columns(),
-                /*
+
                 Forms\Components\Section::make('Fatturazione e Spedizione')->label('Fatturazione e Consegna')
                     ->schema([
                         Forms\Components\Fieldset::make('Indirizzo di Fatturazione')->schema([
@@ -190,7 +190,7 @@ class CustomerResource extends Resource
 
                         ])->columnSpan(1),
                         ])->columns(2),
-                        */
+
                 Forms\Components\Section::make('Dettagli Lead')->label('Dettagli Lead')
                     ->schema([
                         Forms\Components\Select::make('lead_source_id')->label('Fonte Lead')
