@@ -21,7 +21,7 @@ class Personas extends Model
         'email',
         'phone',
         'description',
-        'role',
+        'role_id',
     ];
     /**
      * Get the customers associated with the employee.
