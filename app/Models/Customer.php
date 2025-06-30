@@ -65,6 +65,8 @@ class Customer extends Model
         'n_dipendenti',
         'aderente',
         'fondo',
+        'fondo_id',
+        'segnalatore_id',
     ];
 
     protected $casts = [
