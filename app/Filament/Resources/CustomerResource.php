@@ -257,13 +257,6 @@ class CustomerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('settore.name')->label('Tipologia')->default('–'),
-
-                Tables\Columns\TextColumn::make('employee.name')->label('Referente')->default('–')
-                    ->hidden(!auth()->user()->isAdmin()),
-               /* Tables\Columns\TextColumn::make('first_name')
-                    ->label('Nome'),
-                    */
                 Tables\Columns\TextColumn::make('nome_az')
                     ->label('Cliente')
                     //->hidden(fn ($record) : Bool => $record->is_azienda)
@@ -276,6 +269,15 @@ class CustomerResource extends Resource
                     ->html()
                     ->searchable(['nome_az'])
                     ,
+
+                Tables\Columns\TextColumn::make('settore.name')->label('Tipologia')->default('–'),
+
+                Tables\Columns\TextColumn::make('employee.name')->label('Referente')->default('–')
+                    ->hidden(!auth()->user()->isAdmin()),
+               /* Tables\Columns\TextColumn::make('first_name')
+                    ->label('Nome'),
+                    */
+
                 Tables\Columns\TextColumn::make('course_count')->label('Corsi')
                     ->counts('courses')
                     ->sortable()
