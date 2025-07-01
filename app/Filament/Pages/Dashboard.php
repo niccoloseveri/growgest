@@ -14,6 +14,8 @@ class Dashboard extends \Filament\Pages\Dashboard
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-m-home';
+    protected static ?int $navigationSort = 1;
+
 
     protected function getHeaderActions(): array
     {

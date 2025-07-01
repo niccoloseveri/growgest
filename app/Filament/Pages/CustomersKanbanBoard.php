@@ -12,6 +12,8 @@ class CustomersKanbanBoard extends KanbanBoard
 {
     protected static string $model = Customer::class;
     protected static string $statusEnum = PipelineStage::class;
+    protected static ?int $navigationSort = 20;
+
 
     protected function records(): Collection
     {
