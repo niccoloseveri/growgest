@@ -270,7 +270,7 @@ class CustomerResource extends Resource
                     ->formatStateUsing(function ($record) {
                         //dd($record->is_azienda == 1);
                         $tagsList = view('customer.tagsList', ['tags' => $record->tags])->render();
-                        if($record->is_azienda){
+                        if($record->is_azienda == 1){
                             $record->first_name = '';
                             $record->last_name = $record->nome_az;
                         }
