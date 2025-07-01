@@ -268,7 +268,7 @@ class CustomerResource extends Resource
                     ->label('Cliente')
                     //->hidden(fn ($record) : Bool => $record->is_azienda)
                     ->formatStateUsing(function ($record) {
-                        //dd($record->is_azienda);
+                        //dd($record->is_azienda == 1);
                         $tagsList = view('customer.tagsList', ['tags' => $record->tags])->render();
                         if($record->is_azienda){
                             $record->first_name = '';
