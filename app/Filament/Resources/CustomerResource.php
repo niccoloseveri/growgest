@@ -79,7 +79,10 @@ class CustomerResource extends Resource
                         Forms\Components\TextInput::make('name')->label('Nome')->required(),
                         Forms\Components\Textarea::make('description')->label('Descrizione')->autosize(),
                     ])*/,
-
+                    Forms\Components\Select::make('fondo_id')->label('Fondo Interprofessionale')->relationship(name:'fondo',titleAttribute:'name')->searchable()->preload()->createOptionForm([
+                        Forms\Components\TextInput::make('name')->label('Nome')->required(),
+                        Forms\Components\Textarea::make('description')->label('Descrizione')->autosize(),
+                    ]),
                     Forms\Components\DatePicker::make('prima_fattura')->label('Data prima fattura')
                     ->hidden(fn (Get $get): bool => !$get('gia_cliente')),
                 ])->columns(),
@@ -127,10 +130,7 @@ class CustomerResource extends Resource
                             2 => 'Standby',
                         ])
                         ->default(true),
-                    Forms\Components\Select::make('fondo_id')->label('Fondo Interprofessionale')->relationship(name:'fondo',titleAttribute:'name')->searchable()->preload()->createOptionForm([
-                        Forms\Components\TextInput::make('name')->label('Nome')->required(),
-                        Forms\Components\Textarea::make('description')->label('Descrizione')->autosize(),
-                    ]),
+                    Forms\Components\TextInput::make('fondo')->label('Fondo'),
                     Forms\Components\RichEditor::make('az_note')->label('Note')
                             ->maxLength(65535)
                             ->columnSpanFull(),
