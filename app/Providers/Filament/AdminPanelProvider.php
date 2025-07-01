@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use Edwink\FilamentUserActivity\FilamentUserActivityPlugin;
+use Filament\Facades\Filament;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
@@ -23,6 +24,7 @@ use Saade\FilamentFullCalendar\FilamentFullCalendarPlugin;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use LaraZeus\Bolt\BoltPlugin;
 use LaraZeus\Thunder\ThunderPlugin;
+use TomatoPHP\FilamentNotes\Filament\Resources\NoteResource;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -118,5 +120,13 @@ class AdminPanelProvider extends PanelProvider
     //ThunderPlugin::make()
 
             ]);
+    }
+
+    public function boot() : void{
+        // You can add any boot logic here if needed
+        Filament::serving(static function(){
+            NoteResource::navigationSort(19); // Set the navigation sort order for NoteResource
+        });
+
     }
 }
